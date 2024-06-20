@@ -27,5 +27,5 @@ public class Expense {
 
     private String type;
 
-    private String grouping;
+    private String category;
 }

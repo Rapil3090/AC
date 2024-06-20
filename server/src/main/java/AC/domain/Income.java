@@ -27,6 +27,6 @@ public class Income {
 
     private String type;
 
-    private String grouping;
+    private String category;
 
 }

@@ -17,7 +17,7 @@ public class Asset {
     @Column(name = "asset")
     private Long id;
 
-    private String grouping;
+    private String category;
 
     private int totalAssets;
 }

@@ -21,6 +21,8 @@ public class CreateIncome {
 
         private Long amount;
 
+        private String memo;
+
         private String type;
 
         private String category;

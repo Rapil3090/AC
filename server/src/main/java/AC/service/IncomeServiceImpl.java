@@ -21,6 +21,7 @@ public class IncomeServiceImpl implements IncomeService {
                         .month(request.getMonth())
                         .day(request.getDay())
                         .amount(request.getAmount())
+                        .memo(request.getMemo())
                         .type(request.getType())
                         .category(request.getCategory())
                         .build());

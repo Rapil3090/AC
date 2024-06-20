@@ -35,4 +35,10 @@ public class GlobalExceptionHandler {
         log.error("{} is occurred !", e.getErrorCode());
         return new ErrorResponse(e.getErrorCode(), e.getErrorMessage());
     }
+
+    @ExceptionHandler(AssetException.class)
+    public ErrorResponse handleAssetException(AssetException e) {
+        log.error("{} is occurred !", e.getErrorCode());
+        return new ErrorResponse(e.getErrorCode(), e.getErrorMessage());
+    }
 }

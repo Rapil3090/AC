@@ -23,4 +23,16 @@ public class GlobalExceptionHandler {
         log.error("Exception is occurred !", e);
         return new ErrorResponse(ErrorCode.INTERNAL_SERVER_ERROR, ErrorCode.INTERNAL_SERVER_ERROR.getDescription());
     }
+
+    @ExceptionHandler(ExpenseException.class)
+    public ErrorResponse handleExpenseException(ExpenseException e) {
+        log.error("{} is occurred !" , e.getErrorCode());
+        return new ErrorResponse(e.getErrorCode(), e.getErrorMessage());
+    }
+
+    @ExceptionHandler(IncomeException.class)
+    public ErrorResponse handleIncomeException(IncomeException e) {
+        log.error("{} is occurred !", e.getErrorCode());
+        return new ErrorResponse(e.getErrorCode(), e.getErrorMessage());
+    }
 }

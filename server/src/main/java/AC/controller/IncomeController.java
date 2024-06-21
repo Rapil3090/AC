@@ -2,6 +2,7 @@ package AC.controller;
 
 import AC.dto.IncomeDTO;
 import AC.dto.create.CreateIncomeDTO;
+import AC.dto.update.UpdateIncomeDTO;
 import AC.service.IncomeService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -29,5 +30,13 @@ public class IncomeController {
             @RequestParam("incomeId") Long incomeId) {
 
         return ResponseEntity.ok(incomeService.getIncomeById(incomeId));
+    }
+
+    @PutMapping("/income")
+    public ResponseEntity<UpdateIncomeDTO.Response> updateIncomeById(
+            @Valid @RequestBody UpdateIncomeDTO.Request request) {
+
+        return ResponseEntity.ok(UpdateIncomeDTO.Response.from(
+                incomeService.UpdateIncomeById(request)));
     }
 }

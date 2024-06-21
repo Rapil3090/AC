@@ -2,7 +2,8 @@ package AC.service;
 
 import AC.domain.Income;
 import AC.dto.IncomeDTO;
-import AC.dto.create.CreateIncome;
+import AC.dto.create.CreateIncomeDTO;
+import AC.dto.update.UpdateIncomeDTO;
 import AC.exception.IncomeException;
 import AC.repository.IncomeRepository;
 import AC.type.ErrorCode;
@@ -16,7 +17,7 @@ public class IncomeServiceImpl implements IncomeService {
     private final IncomeRepository incomeRepository;
 
 
-    public Income createIncome(CreateIncome.Request request) {
+    public Income createIncome(CreateIncomeDTO.Request request) {
 
         return incomeRepository.save(
                 Income.builder()
@@ -36,6 +37,21 @@ public class IncomeServiceImpl implements IncomeService {
                 () -> new IncomeException(ErrorCode.INCOME_NOT_FOUND));
 
         return new IncomeDTO(income);
+    }
+
+    public Income UpdateIncomeById(UpdateIncomeDTO.Request request) {
+
+        Income income = incomeRepository.findById(request.getId()).orElseThrow(
+                () -> new IncomeException(ErrorCode.INCOME_NOT_FOUND));
+
+        income.setYear(request.getYear());
+        income.setMonth(request.getMonth());
+        income.setDay(request.getDay());
+        income.setType(request.getType());
+        income.setCategory(request.getCategory());
+        income.setMemo(request.getMemo());
+
+        return incomeRepository.save(income);
     }
 
 }

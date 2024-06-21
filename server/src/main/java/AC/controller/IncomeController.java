@@ -1,7 +1,7 @@
 package AC.controller;
 
 import AC.dto.IncomeDTO;
-import AC.dto.create.CreateIncome;
+import AC.dto.create.CreateIncomeDTO;
 import AC.service.IncomeService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -16,10 +16,10 @@ public class IncomeController {
     private final IncomeService incomeService;
 
     @PostMapping("/income")
-    public ResponseEntity<CreateIncome.Response> createIncome(
-            @Valid @RequestBody CreateIncome.Request request) {
+    public ResponseEntity<CreateIncomeDTO.Response> createIncome(
+            @Valid @RequestBody CreateIncomeDTO.Request request) {
 
-        return ResponseEntity.ok(CreateIncome.Response.from(
+        return ResponseEntity.ok(CreateIncomeDTO.Response.from(
                 incomeService.createIncome(request)));
     }
 

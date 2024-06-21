@@ -3,7 +3,7 @@ package AC.dto.create;
 import AC.domain.Income;
 import lombok.*;
 
-public class CreateIncome {
+public class CreateIncomeDTO {
 
 
     @NoArgsConstructor

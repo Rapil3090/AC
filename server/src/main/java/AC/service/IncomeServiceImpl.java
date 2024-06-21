@@ -3,6 +3,7 @@ package AC.service;
 import AC.domain.Income;
 import AC.dto.IncomeDTO;
 import AC.dto.create.CreateIncomeDTO;
+import AC.dto.delete.DeleteDTO;
 import AC.dto.update.UpdateIncomeDTO;
 import AC.exception.IncomeException;
 import AC.repository.IncomeRepository;
@@ -52,6 +53,14 @@ public class IncomeServiceImpl implements IncomeService {
         income.setMemo(request.getMemo());
 
         return incomeRepository.save(income);
+    }
+
+    public void deleteIncomeById(Long incomeId) {
+
+        incomeRepository.findById(incomeId).orElseThrow(
+                ()-> new IncomeException(ErrorCode.INCOME_NOT_FOUND));
+
+        incomeRepository.deleteById(incomeId);
     }
 
 }

@@ -2,6 +2,7 @@ package AC.controller;
 
 import AC.dto.IncomeDTO;
 import AC.dto.create.CreateIncomeDTO;
+import AC.dto.delete.DeleteDTO;
 import AC.dto.update.UpdateIncomeDTO;
 import AC.service.IncomeService;
 import jakarta.validation.Valid;
@@ -38,5 +39,14 @@ public class IncomeController {
 
         return ResponseEntity.ok(UpdateIncomeDTO.Response.from(
                 incomeService.UpdateIncomeById(request)));
+    }
+
+    @PostMapping("/income/delete")
+    public ResponseEntity<DeleteDTO.Response> deleteIncomeById(
+            @Valid @RequestBody DeleteDTO.Request request) {
+
+        incomeService.deleteIncomeById(request.getId());
+
+        return ResponseEntity.ok(DeleteDTO.Response.from());
     }
 }

@@ -13,4 +13,6 @@ public interface IncomeService {
     IncomeDTO getIncomeById(Long incomeId);
 
     Income UpdateIncomeById(UpdateIncomeDTO.Request request);
+
+    void deleteIncomeById(Long incomeId);
 }

@@ -1,8 +1,11 @@
 package AC.service;
 
 import AC.domain.Income;
+import AC.dto.IncomeDTO;
 import AC.dto.create.CreateIncome;
+import AC.exception.IncomeException;
 import AC.repository.IncomeRepository;
+import AC.type.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +28,14 @@ public class IncomeServiceImpl implements IncomeService {
                         .type(request.getType())
                         .category(request.getCategory())
                         .build());
+    }
+
+    public IncomeDTO getIncomeById(Long incomeId) {
+
+        Income income = incomeRepository.findById(incomeId).orElseThrow(
+                () -> new IncomeException(ErrorCode.INCOME_NOT_FOUND));
+
+        return new IncomeDTO(income);
     }
 
 }

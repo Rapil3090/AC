@@ -1,13 +1,12 @@
 package AC.controller;
 
+import AC.dto.IncomeDTO;
 import AC.dto.create.CreateIncome;
 import AC.service.IncomeService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
@@ -25,4 +24,10 @@ public class IncomeController {
     }
 
 
+    @GetMapping("/income")
+    public ResponseEntity<IncomeDTO> getIncomeById(
+            @RequestParam("incomeId") Long incomeId) {
+
+        return ResponseEntity.ok(incomeService.getIncomeById(incomeId));
+    }
 }

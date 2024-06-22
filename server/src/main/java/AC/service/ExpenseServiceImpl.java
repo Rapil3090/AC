@@ -3,6 +3,7 @@ package AC.service;
 import AC.domain.Expense;
 import AC.dto.ExpenseDTO;
 import AC.dto.create.CreateExpenseDTO;
+import AC.dto.update.UpdateExpenseDTO;
 import AC.exception.ExpenseException;
 import AC.repository.ExpenseRepository;
 import AC.type.ErrorCode;
@@ -35,5 +36,21 @@ public class ExpenseServiceImpl implements ExpenseService {
                 () -> new ExpenseException(ErrorCode.EXPENSE_NOT_FOUND));
 
         return new ExpenseDTO(expense);
+    }
+
+    public Expense updateExpenseById(UpdateExpenseDTO.Request request) {
+
+        Expense expense = expenseRepository.findById(request.getId()).orElseThrow(
+                () -> new ExpenseException(ErrorCode.EXPENSE_NOT_FOUND));
+
+        expense.setYear(request.getYear());
+        expense.setMonth(request.getMonth());
+        expense.setDay(request.getDay());
+        expense.setAmount(request.getAmount());
+        expense.setType(request.getType());
+        expense.setCategory(request.getCategory());
+        expense.setMemo(request.getMemo());
+
+        return expenseRepository.save(expense);
     }
 }

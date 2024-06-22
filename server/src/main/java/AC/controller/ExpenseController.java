@@ -2,6 +2,7 @@ package AC.controller;
 
 import AC.dto.ExpenseDTO;
 import AC.dto.create.CreateExpenseDTO;
+import AC.dto.update.UpdateExpenseDTO;
 import AC.service.ExpenseService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -28,5 +29,13 @@ public class ExpenseController {
             @RequestParam("expenseId") Long expenseId) {
 
         return ResponseEntity.ok(expenseService.getExpenseById(expenseId));
+    }
+
+    @PutMapping("/expense")
+    public ResponseEntity<UpdateExpenseDTO.Response> updateExpenseById(
+            @Valid @RequestBody UpdateExpenseDTO.Request request) {
+
+        return ResponseEntity.ok(UpdateExpenseDTO.Response.from(
+                expenseService.updateExpenseById(request)));
     }
 }

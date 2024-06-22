@@ -28,4 +28,6 @@ public class Expense {
     private String type;
 
     private String category;
+
+    private String memo;
 }

@@ -23,7 +23,7 @@ public class Expense {
 
     private String day;
 
-    private int amount;
+    private Long amount;
 
     private String type;
 

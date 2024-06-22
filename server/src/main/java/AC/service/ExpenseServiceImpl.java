@@ -1,8 +1,11 @@
 package AC.service;
 
 import AC.domain.Expense;
+import AC.dto.ExpenseDTO;
 import AC.dto.create.CreateExpenseDTO;
+import AC.exception.ExpenseException;
 import AC.repository.ExpenseRepository;
+import AC.type.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +29,11 @@ public class ExpenseServiceImpl implements ExpenseService {
                 .build());
     }
 
+    public ExpenseDTO getExpenseById(Long expenseId) {
 
+        Expense expense = expenseRepository.findById(expenseId).orElseThrow(
+                () -> new ExpenseException(ErrorCode.EXPENSE_NOT_FOUND));
+
+        return new ExpenseDTO(expense);
+    }
 }

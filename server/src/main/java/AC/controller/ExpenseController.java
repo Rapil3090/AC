@@ -2,6 +2,7 @@ package AC.controller;
 
 import AC.dto.ExpenseDTO;
 import AC.dto.create.CreateExpenseDTO;
+import AC.dto.delete.DeleteDTO;
 import AC.dto.update.UpdateExpenseDTO;
 import AC.service.ExpenseService;
 import jakarta.validation.Valid;
@@ -37,5 +38,14 @@ public class ExpenseController {
 
         return ResponseEntity.ok(UpdateExpenseDTO.Response.from(
                 expenseService.updateExpenseById(request)));
+    }
+
+    @PostMapping("/expense/delete")
+    public ResponseEntity<DeleteDTO.Response> deleteExpenseById(
+            @Valid @RequestBody DeleteDTO.Request request) {
+
+        expenseService.deleteExpenseById(request.getId());
+
+        return ResponseEntity.ok(DeleteDTO.Response.from());
     }
 }

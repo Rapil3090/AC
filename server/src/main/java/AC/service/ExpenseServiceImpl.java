@@ -53,4 +53,12 @@ public class ExpenseServiceImpl implements ExpenseService {
 
         return expenseRepository.save(expense);
     }
+
+    public void deleteExpenseById(Long expenseId) {
+
+        expenseRepository.findById(expenseId).orElseThrow(
+                () -> new ExpenseException(ErrorCode.EXPENSE_NOT_FOUND));
+
+        expenseRepository.deleteById(expenseId);
+    }
 }

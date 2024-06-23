@@ -1,5 +1,6 @@
 package AC.dto.delete;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 
@@ -12,8 +13,9 @@ public class DeleteDTO {
     @Builder
     public static class Request {
 
-        @NonNull
+        @NotNull
         private Long id;
+
     }
 
     @NoArgsConstructor

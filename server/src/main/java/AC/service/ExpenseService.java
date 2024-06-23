@@ -13,4 +13,6 @@ public interface ExpenseService {
     ExpenseDTO getExpenseById(Long expenseId);
 
     Expense updateExpenseById(UpdateExpenseDTO.Request request);
+
+    void deleteExpenseById(Long expenseId);
 }

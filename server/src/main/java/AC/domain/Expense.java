@@ -14,7 +14,7 @@ public class Expense {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "expense")
+    @Column(name = "expense_id")
     private Long id;
 
     private String year;

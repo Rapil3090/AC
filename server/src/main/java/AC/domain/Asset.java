@@ -14,7 +14,7 @@ public class Asset {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "asset")
+    @Column(name = "asset_id")
     private Long id;
 
     private String category;

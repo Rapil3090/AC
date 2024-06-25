@@ -14,7 +14,7 @@ public class Income {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "income")
+    @Column(name = "income_id")
     private Long id;
 
     private String year;

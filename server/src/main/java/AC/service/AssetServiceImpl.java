@@ -24,15 +24,11 @@ public class AssetServiceImpl implements AssetService {
     private final IncomeRepository incomeRepository;
 
 
-    public AssetDTO getAsset(Long expenseId, Long incomeId, Long assetId) {
-
-        Asset asset = assetRepository.findById(assetId).orElseThrow(
-                () -> new AssetException(ErrorCode.ASSET_NOT_FOUND));
+    public AssetDTO getAsset(Long expenseId, Long incomeId) {
 
         LocalDate today = LocalDate.now();
         String year = String.valueOf(today.getYear());
         String month = String.format("%02d", today.getMonthValue());
-
 
         List<Income> monthlyIncome = incomeRepository.findByIncomeIdAndYearAndMonth(incomeId, year, month);
         Long totalIncomeAmount = monthlyIncome.stream()
@@ -44,10 +40,6 @@ public class AssetServiceImpl implements AssetService {
                 .mapToLong(Expense::getAmount)
                 .sum();
 
-
-
-
-        return new AssetDTO(asset, (totalIncomeAmount-totalExpenseAmount));
-
+        return new AssetDTO((totalIncomeAmount - totalExpenseAmount));
     }
 }

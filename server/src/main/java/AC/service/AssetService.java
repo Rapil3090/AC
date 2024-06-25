@@ -1,8 +1,12 @@
 package AC.service;
 
+import AC.domain.Income;
 import AC.dto.AssetDTO;
+
+import java.util.List;
 
 public interface AssetService {
 
-    public AssetDTO getAsset(Long expenseId, Long incomeId, Long assetId);
+    AssetDTO getAsset(Long expenseId, Long incomeId);
+
 }

@@ -16,8 +16,7 @@ public class AssetDTO {
 
     private String category;
 
-    public AssetDTO(Asset asset, Long totalAssets) {
-        this.id = asset.getId();
+    public AssetDTO(Long totalAssets) {
         this.totalAssets = totalAssets;
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface IncomeRepository extends JpaRepository<Income, Long> {
 
-    @Query("SELECT i FROM Income i WHERE i.incomId = :incomeId AND i.year = :year AND i.month = :month")
+    @Query("SELECT i FROM Income i WHERE i.id = :incomeId AND i.year = :year AND i.month = :month")
     List<Income> findByIncomeIdAndYearAndMonth(
             @Param("incomeId") Long incomeId,
             @Param("year") String year,

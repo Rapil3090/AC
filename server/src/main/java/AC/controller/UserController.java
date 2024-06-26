@@ -4,6 +4,7 @@ import AC.domain.User;
 import AC.dto.UserDTO;
 import AC.dto.create.CreateUserDTO;
 import AC.dto.delete.DeleteDTO;
+import AC.dto.update.UpdateUserDTO;
 import AC.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -39,6 +40,14 @@ public class UserController {
         userService.deleteUserById(userId);
 
         return ResponseEntity.ok(DeleteDTO.Response.from());
+    }
+
+    @PutMapping("/user")
+    public ResponseEntity<UpdateUserDTO.Response> updateUserById(
+            @Valid @RequestBody UpdateUserDTO.Request request) {
+
+        return ResponseEntity.ok(UpdateUserDTO.Response.from(
+                userService.updateUserById(request)));
     }
 
 

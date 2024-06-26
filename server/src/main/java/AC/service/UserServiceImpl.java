@@ -3,6 +3,7 @@ package AC.service;
 import AC.domain.User;
 import AC.dto.UserDTO;
 import AC.dto.create.CreateUserDTO;
+import AC.dto.update.UpdateUserDTO;
 import AC.exception.UserException;
 import AC.repository.UserRepository;
 import AC.type.ErrorCode;
@@ -37,5 +38,15 @@ public class UserServiceImpl implements UserService {
                 () -> new UserException(ErrorCode.USER_NOT_FOUND));
 
         userRepository.deleteById(userId);
+    }
+
+    public User updateUserById(UpdateUserDTO.Request request) {
+
+        User user = userRepository.findById(request.getId()).orElseThrow(
+                () -> new UserException(ErrorCode.USER_NOT_FOUND));
+
+        user.setName(request.getName());
+
+        return userRepository.save(user);
     }
 }

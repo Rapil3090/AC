@@ -1,12 +1,15 @@
 package AC.service;
 
 import AC.domain.Income;
+import AC.domain.User;
 import AC.dto.IncomeDTO;
 import AC.dto.create.CreateIncomeDTO;
 import AC.dto.delete.DeleteDTO;
 import AC.dto.update.UpdateIncomeDTO;
 import AC.exception.IncomeException;
+import AC.exception.UserException;
 import AC.repository.IncomeRepository;
+import AC.repository.UserRepository;
 import AC.type.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,12 +19,17 @@ import org.springframework.stereotype.Service;
 public class IncomeServiceImpl implements IncomeService {
 
     private final IncomeRepository incomeRepository;
-
+    private final UserRepository userRepository;
 
     public Income createIncome(CreateIncomeDTO.Request request) {
 
+        User user = userRepository.findById(request.getUserId()).orElseThrow(
+                () -> new UserException(ErrorCode.USER_NOT_FOUND));
+
+
         return incomeRepository.save(
                 Income.builder()
+                        .user(user)
                         .year(request.getYear())
                         .month(request.getMonth())
                         .day(request.getDay())

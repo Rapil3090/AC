@@ -13,6 +13,8 @@ public class CreateIncomeDTO {
     @Builder
     public static class Request {
 
+        private Long userId;
+
         private String year;
 
         private String month;

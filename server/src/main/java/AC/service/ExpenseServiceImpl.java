@@ -1,11 +1,14 @@
 package AC.service;
 
 import AC.domain.Expense;
+import AC.domain.User;
 import AC.dto.ExpenseDTO;
 import AC.dto.create.CreateExpenseDTO;
 import AC.dto.update.UpdateExpenseDTO;
 import AC.exception.ExpenseException;
+import AC.exception.UserException;
 import AC.repository.ExpenseRepository;
+import AC.repository.UserRepository;
 import AC.type.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,11 +18,15 @@ import org.springframework.stereotype.Service;
 public class ExpenseServiceImpl implements ExpenseService {
 
     private final ExpenseRepository expenseRepository;
-
+    private final UserRepository userRepository;
 
     public Expense createExpense(CreateExpenseDTO.Request request) {
 
+        User user = userRepository.findById(request.getUserId()).orElseThrow(
+                () -> new UserException(ErrorCode.USER_NOT_FOUND));
+
         return expenseRepository.save(Expense.builder()
+                .user(user)
                 .year(request.getYear())
                 .month(request.getMonth())
                 .day(request.getDay())

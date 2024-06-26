@@ -3,6 +3,7 @@ package AC.controller;
 import AC.domain.User;
 import AC.dto.UserDTO;
 import AC.dto.create.CreateUserDTO;
+import AC.dto.delete.DeleteDTO;
 import AC.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -30,4 +31,15 @@ public class UserController {
 
         return ResponseEntity.ok(userService.getUserById(userId));
     }
+
+    @PostMapping("/user/delete")
+    public ResponseEntity<DeleteDTO.Response> deleteUserById(
+            @RequestParam("userId") Long userId) {
+
+        userService.deleteUserById(userId);
+
+        return ResponseEntity.ok(DeleteDTO.Response.from());
+    }
+
+
 }

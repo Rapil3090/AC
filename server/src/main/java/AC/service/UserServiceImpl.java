@@ -30,4 +30,12 @@ public class UserServiceImpl implements UserService {
 
         return new UserDTO(user);
     }
+
+    public void deleteUserById(Long userId) {
+
+        userRepository.findById(userId).orElseThrow(
+                () -> new UserException(ErrorCode.USER_NOT_FOUND));
+
+        userRepository.deleteById(userId);
+    }
 }

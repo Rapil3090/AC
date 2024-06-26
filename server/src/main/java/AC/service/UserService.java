@@ -10,4 +10,6 @@ public interface UserService {
     User createUser(CreateUserDTO.Request request);
 
     UserDTO getUserById(Long userId);
+
+    void deleteUserById(Long userId);
 }

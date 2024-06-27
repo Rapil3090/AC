@@ -45,7 +45,6 @@ public class AssetServiceImpl implements AssetService {
             month = String.format("%02d", Integer.parseInt(month));
         }
 
-
         List<Income> monthlyIncome = incomeRepository.findByUserIdAndYearAndMonth(userId, year, month);
         Long totalIncomeAmount = monthlyIncome.stream()
                 .mapToLong(Income::getAmount)
@@ -55,11 +54,6 @@ public class AssetServiceImpl implements AssetService {
         Long totalExpenseAmount = monthlyExpense.stream()
                 .mapToLong(Expense::getAmount)
                 .sum();
-
-        System.out.println(monthlyIncome);
-        System.out.println(monthlyExpense);
-        System.out.println(totalIncomeAmount);
-        System.out.println(totalExpenseAmount);
 
         return new AssetDTO((totalIncomeAmount - totalExpenseAmount));
     }

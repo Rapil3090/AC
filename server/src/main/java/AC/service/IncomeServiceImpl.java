@@ -26,12 +26,13 @@ public class IncomeServiceImpl implements IncomeService {
         User user = userRepository.findById(request.getUserId()).orElseThrow(
                 () -> new UserException(ErrorCode.USER_NOT_FOUND));
 
+        String formattedMonth = String.format("%02d", Integer.parseInt(request.getMonth()));
 
         return incomeRepository.save(
                 Income.builder()
                         .user(user)
                         .year(request.getYear())
-                        .month(request.getMonth())
+                        .month(formattedMonth)
                         .day(request.getDay())
                         .amount(request.getAmount())
                         .memo(request.getMemo())

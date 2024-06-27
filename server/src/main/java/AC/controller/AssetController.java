@@ -16,10 +16,9 @@ public class AssetController {
 
     @GetMapping("/asset")
     public ResponseEntity<AssetDTO> getAsset(
-            @RequestParam("expenseId") Long expenseId,
-            @RequestParam("incomeId") Long incomeId) {
+            @RequestParam("userId") Long userId) {
 
-        return ResponseEntity.ok(assetService.getAsset(expenseId,incomeId));
+        return ResponseEntity.ok(assetService.getAsset(userId));
     }
 
 

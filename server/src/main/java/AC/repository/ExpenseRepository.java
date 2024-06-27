@@ -1,6 +1,7 @@
 package AC.repository;
 
 import AC.domain.Expense;
+import AC.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,9 +13,9 @@ import java.util.List;
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 
 
-    @Query("SELECT e FROM Expense e WHERE e.id = :expenseId AND e.year = :year AND e.month = :month")
-    List<Expense> findByExpenseIdAndYearAndMonth(
-            @Param("expenseId") Long expenseId,
+    @Query("SELECT e FROM Expense e WHERE e.user.id = :userId AND e.year = :year AND e.month = :month")
+    List<Expense> findByUserIdAndYearAndMonth(
+            @Param("userId") Long userId,
             @Param("year") String year,
             @Param("month") String month);
 }

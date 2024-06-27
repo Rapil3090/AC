@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface AssetService {
 
-    AssetDTO getAsset(Long expenseId, Long incomeId);
+    AssetDTO getAsset(Long userId);
 
 }

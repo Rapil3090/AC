@@ -28,14 +28,23 @@ public class AssetServiceImpl implements AssetService {
     private final UserRepository userRepository;
 
 
-    public AssetDTO getAsset(Long userId) {
+    public AssetDTO getAsset(Long userId, String year, String month) {
 
         userRepository.findById(userId).orElseThrow(
                 ()-> new UserException(ErrorCode.USER_NOT_FOUND));
 
         LocalDate today = LocalDate.now();
-        String year = String.valueOf(today.getYear());
-        String month = String.format("%02d", today.getMonthValue());
+
+        if (year == null) {
+            year = String.valueOf(today.getYear());
+        }
+
+        if (month == null) {
+            month = String.format("%02d", today.getMonthValue());
+        } else {
+            month = String.format("%02d", Integer.parseInt(month));
+        }
+
 
         List<Income> monthlyIncome = incomeRepository.findByUserIdAndYearAndMonth(userId, year, month);
         Long totalIncomeAmount = monthlyIncome.stream()
@@ -46,6 +55,11 @@ public class AssetServiceImpl implements AssetService {
         Long totalExpenseAmount = monthlyExpense.stream()
                 .mapToLong(Expense::getAmount)
                 .sum();
+
+        System.out.println(monthlyIncome);
+        System.out.println(monthlyExpense);
+        System.out.println(totalIncomeAmount);
+        System.out.println(totalExpenseAmount);
 
         return new AssetDTO((totalIncomeAmount - totalExpenseAmount));
     }

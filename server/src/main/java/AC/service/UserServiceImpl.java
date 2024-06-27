@@ -10,6 +10,9 @@ import AC.type.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -48,5 +51,14 @@ public class UserServiceImpl implements UserService {
         user.setName(request.getName());
 
         return userRepository.save(user);
+    }
+
+    public List<UserDTO> getAllUsers() {
+
+        List<User> userList = userRepository.findAll();
+
+        return userList.stream()
+                .map(user -> new UserDTO(user.getId(), user.getName()))
+                .collect(Collectors.toList());
     }
 }

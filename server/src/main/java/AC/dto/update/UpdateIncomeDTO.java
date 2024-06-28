@@ -1,6 +1,7 @@
 package AC.dto.update;
 
 import AC.domain.Income;
+import AC.type.Type;
 import lombok.*;
 
 public class UpdateIncomeDTO {
@@ -23,7 +24,7 @@ public class UpdateIncomeDTO {
 
         private Long amount;
 
-        private String type;
+        private Type type;
 
         private String category;
 

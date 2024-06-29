@@ -2,6 +2,7 @@ package AC.dto.create;
 
 import AC.domain.Expense;
 import AC.domain.Income;
+import AC.type.Type;
 import lombok.*;
 
 public class CreateExpenseDTO {
@@ -25,7 +26,7 @@ public class CreateExpenseDTO {
 
         private String memo;
 
-        private String type;
+        private Type type;
 
         private String category;
 

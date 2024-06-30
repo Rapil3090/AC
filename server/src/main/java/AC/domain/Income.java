@@ -1,5 +1,6 @@
 package AC.domain;
 
+import AC.type.Category;
 import AC.type.Type;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -30,7 +31,8 @@ public class Income {
     @Enumerated(EnumType.STRING)
     private Type type;
 
-    private String category;
+    @Enumerated(EnumType.STRING)
+    private Category category;
 
     private String memo;
 

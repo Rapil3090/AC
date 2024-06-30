@@ -1,6 +1,8 @@
 package AC.dto;
 
 import AC.domain.Expense;
+import AC.type.Category;
+import AC.type.Type;
 import lombok.*;
 
 @Builder
@@ -22,9 +24,9 @@ public class ExpenseDTO {
 
     private String memo;
 
-    private String type;
+    private Type type;
 
-    private String category;
+    private Category category;
 
     public ExpenseDTO(Expense expense) {
         this.id = expense.getId();

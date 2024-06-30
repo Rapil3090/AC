@@ -2,6 +2,7 @@ package AC.dto.update;
 
 import AC.domain.Expense;
 import AC.domain.Income;
+import AC.type.Category;
 import AC.type.Type;
 import lombok.*;
 
@@ -26,7 +27,7 @@ public class UpdateExpenseDTO {
 
         private Type type;
 
-        private String category;
+        private Category category;
 
         private String memo;
 
@@ -51,7 +52,7 @@ public class UpdateExpenseDTO {
 
         private Type type;
 
-        private String category;
+        private Category category;
 
         private String memo;
 

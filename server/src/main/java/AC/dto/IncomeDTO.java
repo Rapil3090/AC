@@ -1,6 +1,7 @@
 package AC.dto;
 
 import AC.domain.Income;
+import AC.type.Category;
 import AC.type.Type;
 import lombok.*;
 
@@ -23,7 +24,7 @@ public class IncomeDTO {
 
     private Type type;
 
-    private String category;
+    private Category category;
 
     private String memo;
 

@@ -3,12 +3,15 @@ package AC.controller;
 import AC.dto.IncomeDTO;
 import AC.dto.create.CreateIncomeDTO;
 import AC.dto.delete.DeleteDTO;
+import AC.dto.get.GetCategoryDTO;
 import AC.dto.update.UpdateIncomeDTO;
 import AC.service.IncomeService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -48,5 +51,12 @@ public class IncomeController {
         incomeService.deleteIncomeById(request.getId());
 
         return ResponseEntity.ok(DeleteDTO.Response.from());
+    }
+
+    @GetMapping("/income/category")
+    public ResponseEntity<List<IncomeDTO>> getUserIdByCategory(
+            @Valid @RequestBody GetCategoryDTO request) {
+
+        return ResponseEntity.ok(incomeService.getUserIdByCategory(request));
     }
 }

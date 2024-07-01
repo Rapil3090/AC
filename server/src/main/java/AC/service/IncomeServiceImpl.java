@@ -5,14 +5,19 @@ import AC.domain.User;
 import AC.dto.IncomeDTO;
 import AC.dto.create.CreateIncomeDTO;
 import AC.dto.delete.DeleteDTO;
+import AC.dto.get.GetCategoryDTO;
 import AC.dto.update.UpdateIncomeDTO;
 import AC.exception.IncomeException;
 import AC.exception.UserException;
 import AC.repository.IncomeRepository;
 import AC.repository.UserRepository;
+import AC.type.Category;
 import AC.type.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -70,6 +75,15 @@ public class IncomeServiceImpl implements IncomeService {
                 ()-> new IncomeException(ErrorCode.INCOME_NOT_FOUND));
 
         incomeRepository.deleteById(incomeId);
+    }
+
+    public List<IncomeDTO> getUserIdByCategory(GetCategoryDTO request) {
+
+        List<Income> incomeList = incomeRepository.findByUserIdAndCategory(request.getUserId(), request.getCategory());
+
+        return incomeList.stream()
+                .map(IncomeDTO::new)
+                .collect(Collectors.toList());
     }
 
 }

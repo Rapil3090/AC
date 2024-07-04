@@ -19,10 +19,11 @@ public class ImageController {
 
     @PostMapping("/image")
     public ResponseEntity<List<Image>> saveImage(
-            @RequestParam("file") List<MultipartFile> files) {
+            @RequestParam("file") List<MultipartFile> files,
+            @RequestParam("expenseId") Long expenseId) {
 
 
-        return ResponseEntity.ok(imageService.saveFile(files));
+        return ResponseEntity.ok(imageService.saveFile(files, expenseId));
     }
 
 }

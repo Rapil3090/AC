@@ -1,7 +1,10 @@
 package AC.service;
 
+import AC.domain.Expense;
 import AC.domain.Image;
+import AC.exception.ExpenseException;
 import AC.exception.ImageException;
+import AC.repository.ExpenseRepository;
 import AC.repository.ImageRepository;
 import AC.type.ErrorCode;
 import lombok.RequiredArgsConstructor;
@@ -20,11 +23,15 @@ import java.util.UUID;
 public class ImageServiceImpl implements ImageService {
 
     private final ImageRepository imageRepository;
+    private final ExpenseRepository expenseRepository;
 
-    public List<Image> saveFile(List<MultipartFile> multipartFile) {
+    public List<Image> saveFile(List<MultipartFile> multipartFile, Long expenseId) {
         if (multipartFile.isEmpty()) {
             throw new ImageException(ErrorCode.IMAGE_NOT_FOUND);
         }
+
+        Expense expense = expenseRepository.findById(expenseId).orElseThrow(
+                () -> new ExpenseException(ErrorCode.EXPENSE_NOT_FOUND));
 
         List<Image> saveImage = new ArrayList<>();
 
@@ -43,6 +50,7 @@ public class ImageServiceImpl implements ImageService {
                 image.setSaveDate(LocalDateTime.now());
                 image.setImageName(savedFileName);
                 image.setImageName(originalFileName);
+                image.setExpense(expense);
                 saveImage.add(image);
 
                 imageRepository.save(image);
@@ -51,9 +59,6 @@ public class ImageServiceImpl implements ImageService {
                 throw new ImageException(ErrorCode.IMAGE_NOT_FOUND);
             }
         }
-
         return saveImage;
-
-
     }
 }

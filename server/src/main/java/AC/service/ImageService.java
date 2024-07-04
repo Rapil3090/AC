@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface ImageService {
 
-    List<Image> saveFile(List<MultipartFile> multipartFile);
+    List<Image> saveFile(List<MultipartFile> multipartFile, Long expenseId);
 
 }

@@ -26,6 +26,8 @@ public class Image {
 
     private String saveImageName;
 
+    private String imagePath;
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "expense_id")

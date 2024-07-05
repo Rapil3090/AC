@@ -47,8 +47,8 @@ public class ImageServiceImpl implements ImageService {
             try {
                 multipartFiles.transferTo(file);
                 Image image = new Image();
+                image.setSaveImageName(savedFileName);
                 image.setSaveDate(LocalDateTime.now());
-                image.setImageName(savedFileName);
                 image.setImageName(originalFileName);
                 image.setExpense(expense);
                 saveImage.add(image);

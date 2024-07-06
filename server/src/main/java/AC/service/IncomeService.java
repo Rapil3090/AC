@@ -4,6 +4,7 @@ import AC.domain.Income;
 import AC.dto.IncomeDTO;
 import AC.dto.create.CreateIncomeDTO;
 import AC.dto.get.GetCategoryDTO;
+import AC.dto.get.GetIncomeByYearAndMonth;
 import AC.dto.update.UpdateIncomeDTO;
 import AC.type.Category;
 
@@ -21,4 +22,6 @@ public interface IncomeService {
     void deleteIncomeById(Long incomeId);
 
     List<IncomeDTO> getUserIdByCategory(GetCategoryDTO request);
+
+    List<IncomeDTO> getUserIdByYearAndMonth(GetIncomeByYearAndMonth request);
 }

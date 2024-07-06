@@ -6,6 +6,7 @@ import AC.dto.IncomeDTO;
 import AC.dto.create.CreateIncomeDTO;
 import AC.dto.delete.DeleteDTO;
 import AC.dto.get.GetCategoryDTO;
+import AC.dto.get.GetIncomeByYearAndMonth;
 import AC.dto.update.UpdateIncomeDTO;
 import AC.exception.IncomeException;
 import AC.exception.UserException;
@@ -80,6 +81,15 @@ public class IncomeServiceImpl implements IncomeService {
     public List<IncomeDTO> getUserIdByCategory(GetCategoryDTO request) {
 
         List<Income> incomeList = incomeRepository.findByUserIdAndCategory(request.getUserId(), request.getCategory());
+
+        return incomeList.stream()
+                .map(IncomeDTO::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<IncomeDTO> getUserIdByYearAndMonth(GetIncomeByYearAndMonth request) {
+
+        List<Income> incomeList = incomeRepository.findByUserIdAndYearAndMonth(request.getUserId(), request.getYear(), request.getMonth());
 
         return incomeList.stream()
                 .map(IncomeDTO::new)

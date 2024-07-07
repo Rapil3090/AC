@@ -7,7 +7,7 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class GetIncomeByYearAndMonth {
+public class GetUserIdByYearAndMonth {
 
     private Long userId;
 

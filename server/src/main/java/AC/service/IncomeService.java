@@ -4,9 +4,8 @@ import AC.domain.Income;
 import AC.dto.IncomeDTO;
 import AC.dto.create.CreateIncomeDTO;
 import AC.dto.get.GetCategoryDTO;
-import AC.dto.get.GetIncomeByYearAndMonth;
+import AC.dto.get.GetUserIdByYearAndMonth;
 import AC.dto.update.UpdateIncomeDTO;
-import AC.type.Category;
 
 import java.util.List;
 
@@ -23,5 +22,5 @@ public interface IncomeService {
 
     List<IncomeDTO> getUserIdByCategory(GetCategoryDTO request);
 
-    List<IncomeDTO> getUserIdByYearAndMonth(GetIncomeByYearAndMonth request);
+    List<IncomeDTO> getUserIdByYearAndMonth(GetUserIdByYearAndMonth request);
 }

@@ -4,7 +4,7 @@ import AC.dto.IncomeDTO;
 import AC.dto.create.CreateIncomeDTO;
 import AC.dto.delete.DeleteDTO;
 import AC.dto.get.GetCategoryDTO;
-import AC.dto.get.GetIncomeByYearAndMonth;
+import AC.dto.get.GetUserIdByYearAndMonth;
 import AC.dto.update.UpdateIncomeDTO;
 import AC.service.IncomeService;
 import jakarta.validation.Valid;
@@ -63,7 +63,7 @@ public class IncomeController {
 
     @GetMapping("/income/user")
     public ResponseEntity<List<IncomeDTO>> getUserIdByYearAndMonth(
-            @Valid @RequestBody GetIncomeByYearAndMonth request) {
+            @Valid @RequestBody GetUserIdByYearAndMonth request) {
 
         return ResponseEntity.ok(incomeService.getUserIdByYearAndMonth(request));
     }

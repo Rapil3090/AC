@@ -4,15 +4,13 @@ import AC.domain.Income;
 import AC.domain.User;
 import AC.dto.IncomeDTO;
 import AC.dto.create.CreateIncomeDTO;
-import AC.dto.delete.DeleteDTO;
 import AC.dto.get.GetCategoryDTO;
-import AC.dto.get.GetIncomeByYearAndMonth;
+import AC.dto.get.GetUserIdByYearAndMonth;
 import AC.dto.update.UpdateIncomeDTO;
 import AC.exception.IncomeException;
 import AC.exception.UserException;
 import AC.repository.IncomeRepository;
 import AC.repository.UserRepository;
-import AC.type.Category;
 import AC.type.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -87,7 +85,7 @@ public class IncomeServiceImpl implements IncomeService {
                 .collect(Collectors.toList());
     }
 
-    public List<IncomeDTO> getUserIdByYearAndMonth(GetIncomeByYearAndMonth request) {
+    public List<IncomeDTO> getUserIdByYearAndMonth(GetUserIdByYearAndMonth request) {
 
         List<Income> incomeList = incomeRepository.findByUserIdAndYearAndMonth(request.getUserId(), request.getYear(), request.getMonth());
 

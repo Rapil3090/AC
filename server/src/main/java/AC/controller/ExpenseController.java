@@ -3,12 +3,15 @@ package AC.controller;
 import AC.dto.ExpenseDTO;
 import AC.dto.create.CreateExpenseDTO;
 import AC.dto.delete.DeleteDTO;
+import AC.dto.get.GetUserIdByYearAndMonth;
 import AC.dto.update.UpdateExpenseDTO;
 import AC.service.ExpenseService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -47,5 +50,12 @@ public class ExpenseController {
         expenseService.deleteExpenseById(request.getId());
 
         return ResponseEntity.ok(DeleteDTO.Response.from());
+    }
+
+    @GetMapping("/expense/user")
+    public ResponseEntity<List<ExpenseDTO>> getUserIdByYearAndMonth(
+            @Valid @RequestBody GetUserIdByYearAndMonth request) {
+
+        return ResponseEntity.ok(expenseService.getUserIdByYearAndMonth(request));
     }
 }

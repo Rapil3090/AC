@@ -4,6 +4,7 @@ import AC.domain.Expense;
 import AC.domain.User;
 import AC.dto.ExpenseDTO;
 import AC.dto.create.CreateExpenseDTO;
+import AC.dto.get.GetUserIdByYearAndMonth;
 import AC.dto.update.UpdateExpenseDTO;
 import AC.exception.ExpenseException;
 import AC.exception.UserException;
@@ -12,6 +13,9 @@ import AC.repository.UserRepository;
 import AC.type.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -69,5 +73,15 @@ public class ExpenseServiceImpl implements ExpenseService {
                 () -> new ExpenseException(ErrorCode.EXPENSE_NOT_FOUND));
 
         expenseRepository.deleteById(expenseId);
+    }
+
+    public List<ExpenseDTO> getUserIdByYearAndMonth(GetUserIdByYearAndMonth request) {
+
+        List<Expense> expenseList = expenseRepository.findByUserIdAndYearAndMonth(request.getUserId(), request.getYear(), request.getMonth());
+
+        return expenseList.stream()
+                .map(ExpenseDTO::new)
+                .collect(Collectors.toList());
+
     }
 }

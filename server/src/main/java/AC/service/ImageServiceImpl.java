@@ -8,11 +8,16 @@ import AC.repository.ExpenseRepository;
 import AC.repository.ImageRepository;
 import AC.type.ErrorCode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +56,7 @@ public class ImageServiceImpl implements ImageService {
                 image.setSaveDate(LocalDateTime.now());
                 image.setImageName(originalFileName);
                 image.setExpense(expense);
+                image.setImagePath(path + savedFileName);
                 saveImage.add(image);
 
                 imageRepository.save(image);
@@ -61,4 +67,10 @@ public class ImageServiceImpl implements ImageService {
         }
         return saveImage;
     }
+
+    public List<Image> getImages(Long expenseId) {
+
+        return imageRepository.findByExpenseId(expenseId);
+    }
+
 }

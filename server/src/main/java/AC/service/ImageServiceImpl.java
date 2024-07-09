@@ -73,4 +73,14 @@ public class ImageServiceImpl implements ImageService {
         return imageRepository.findByExpenseId(expenseId);
     }
 
+    public Resource getImage(Long imageId) throws IOException {
+        Image image = imageRepository.findById(imageId).orElseThrow(
+                () -> new ImageException(ErrorCode.IMAGE_NOT_FOUND));
+
+        String path = "/Users/rapil/Desktop/repo/AccountBook/image/";
+        Path filePath = Paths.get(path + image.getSaveImageName());
+
+        return new UrlResource(filePath.toUri());
+    }
+
 }

@@ -13,4 +13,6 @@ public interface ImageService {
 
     List<Image> getImages(Long expenseId);
 
+    Resource getImage(Long imageId) throws IOException;
+
 }
